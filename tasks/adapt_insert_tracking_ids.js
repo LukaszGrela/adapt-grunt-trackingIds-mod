@@ -24,11 +24,11 @@ module.exports = function(grunt) {
                     block._trackingId = ++options._latestTrackingId;
                     grunt.log.writeln("Adding tracking ID: " + block._trackingId + " to block " + block._id);
                 } else {
-                    if(options._trackingIdsSeen.indexOf(block._trackingId) > -1) {
+                    if(block._trackingId != -1 && options._trackingIdsSeen.indexOf(block._trackingId) > -1) {
                         grunt.log.writeln("Warning: " + block._id + " has the tracking ID " + block._trackingId + ", but this is already in use. Changing to " + (options._latestTrackingId + 1) + ".");
                         block._trackingId = ++options._latestTrackingId;
                     } else {
-                        options._trackingIdsSeen.push(block._trackingId);
+                        if(block._trackingId != -1) options._trackingIdsSeen.push(block._trackingId);
                     }
                 }
                 if(options._latestTrackingId < block._trackingId) {

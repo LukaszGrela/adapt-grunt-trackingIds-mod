@@ -15,7 +15,8 @@ module.exports = function(grunt) {
         function removeTrackingIds(blocks, course){
             
             for(var i = 0; i < blocks.length; i++) {
-                delete blocks[i]._trackingId;
+                if(blocks[i]._trackingId != -1)
+                    delete blocks[i]._trackingId;
             }
             delete course._latestTrackingId;
             grunt.log.writeln("Tracking IDs removed.");

@@ -20,9 +20,11 @@ module.exports = function(grunt) {
             
             for(var i = 0; i < blocks.length; i++) {
                 var block = blocks[i];
-                block._trackingId = ++options._latestTrackingId;
-                grunt.log.writeln("Adding tracking ID: " + block._trackingId + " to block " + block._id);
-                options._latestTrackingId = block._trackingId;
+                if(block._trackingId != -1) {
+                    block._trackingId = ++options._latestTrackingId;
+                    grunt.log.writeln("Adding tracking ID: " + block._trackingId + " to block " + block._id);
+                    options._latestTrackingId = block._trackingId;
+                }
             }
             course._latestTrackingId = options._latestTrackingId;
             grunt.log.writeln("The latest tracking ID is " + course._latestTrackingId);
